@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router';
+import Navigation from './routes/navigation/navigation.component';
+import Home from './routes/home/home.component';
+import CheatMeals from './routes/cheat-meals/cheat-meals.component';
+import Authentication from './routes/authentication/authentication.component';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigation />} >
+        <Route index element={<Home />} />
+        <Route path="meals" element={<CheatMeals />} />
+        <Route path="auth" element={<Authentication />} />
+      </Route>
+    </Routes>
   );
 }
 
