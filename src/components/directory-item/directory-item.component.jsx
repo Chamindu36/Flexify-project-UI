@@ -12,7 +12,6 @@ const DirectoryItem = ({ menuItem }) => {
             />
             <Body to={`${title.toLowerCase()}`}>
                 <h2>{title}</h2>
-                <p>Shop Now</p>
             </Body>
         </DirectoryItemContainer>
     );
