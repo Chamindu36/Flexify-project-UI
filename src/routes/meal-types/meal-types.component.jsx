@@ -10,8 +10,8 @@ import {
     AddMealTypeModalContainer
 } from "./meal-types.styles";
 import Button, { BUTTON_TYPE_CLASSES } from "../../components/button/button.component";
-import MealTypeItem from "../../components/meal-type-item/meal-type-item.component";
-import AddMealTypeForm from "../../components/add-meal-type-form/add-meal-type-form.component";
+import AddMealTypeForm from "../../components/admin-directory/meal-types/add-meal-type-form/add-meal-type-form.component";
+import MealTypeItem from "../../components/admin-directory/meal-types/meal-type-item/meal-type-item.component";
 
 const MealTypes = () => {
     const { mealTypes } = useContext(MealTypesContext);

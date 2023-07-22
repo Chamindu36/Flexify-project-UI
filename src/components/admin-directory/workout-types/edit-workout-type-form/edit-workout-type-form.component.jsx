@@ -1,26 +1,25 @@
 import React, { useState, useContext } from "react";
 
 import {
-    EditMealTypeFormContainer,
+    EditWorkoutTypeFormContainer,
     ButtonsContainer,
-    EditMealTypeFormModalContainer
-} from "./edit-meal-type-form.styles";
-import FormInput from "../form-input/form-input.components";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+    EditWorkoutTypeFormModalContainer
+} from "./edit-workout-type-form.styles";
+import FormInput from "../../../form-input/form-input.components";
+import Button, { BUTTON_TYPE_CLASSES } from "../../../button/button.component";
 
-import { MealTypesContext } from "../../contexts/meal-types.context";
+import { WorkoutTypesContext } from "../../../../contexts/workout-types.context";
 
-
-const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
+const EditWorkoutTypeForm = ({ workoutType, handleCancel, handleEdit }) => {
 
     const [formState, setFormState] = useState({
-        title: mealType.title,
-        imageUrl: mealType.imageUrl,
-        description: mealType.description,
-        calories: mealType.calories,
+        title: workoutType.title,
+        imageUrl: workoutType.imageUrl,
+        description: workoutType.description,
+        calories: workoutType.calories,
     });
 
-    const { updateMealType } = useContext(MealTypesContext);
+    const { updateWorkoutType } = useContext(WorkoutTypesContext);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -36,21 +35,19 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
 
         handleEdit(formState);
 
-        await updateMealType(formState.title, formState);
+        await updateWorkoutType(formState.title, formState);
 
         handleCancelClick();// Pass the edited form data to the parent component
     };
 
-
-
     return (
-        <EditMealTypeFormModalContainer
+        <EditWorkoutTypeFormModalContainer
             isOpen={true} // Set to true to always show the modal
             onRequestClose={handleCancelClick}
             ariaHideApp={false} // Prevent app from being hidden when modal is open
         >
-            <EditMealTypeFormContainer>
-                <h2>Edit Meal Type</h2>
+            <EditWorkoutTypeFormContainer>
+                <h2>Edit Workout Type</h2>
                 <form onSubmit={handleSubmit}>
                     <FormInput
                         label="Title"
@@ -62,7 +59,7 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
                     />
 
                     <FormInput
-                        label="Description"
+                        label="Workout Category"
                         type="text"
                         required
                         onChange={handleChange}
@@ -71,8 +68,8 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
                     />
 
                     <FormInput
-                        label="Image Link"
-                        type="url"
+                        label="Image URL"
+                        type="text"
                         required
                         onChange={handleChange}
                         name="imageUrl"
@@ -80,7 +77,7 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
                     />
 
                     <FormInput
-                        label="Calories per 1KG"
+                        label="Calories burnt per 30 min or 8 reps"
                         type="number"
                         required
                         onChange={handleChange}
@@ -99,9 +96,10 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
                         </Button>
                     </ButtonsContainer>
                 </form>
-            </EditMealTypeFormContainer>
-        </EditMealTypeFormModalContainer>
+            </EditWorkoutTypeFormContainer>
+        </EditWorkoutTypeFormModalContainer>
+
     );
 };
 
-export default EditMealTypeForm;
+export default EditWorkoutTypeForm;

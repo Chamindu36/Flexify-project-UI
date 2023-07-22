@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { UserProvider } from './contexts/user.context';
 import { MealTypesProvider } from './contexts/meal-types.context';
+import { WorkoutTypesProvider } from './contexts/workout-types.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +16,9 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <MealTypesProvider>
-          <App />
+          <WorkoutTypesProvider>
+            <App />
+          </WorkoutTypesProvider>
         </MealTypesProvider>
       </UserProvider>
     </BrowserRouter>

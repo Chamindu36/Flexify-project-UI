@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const AdminDirectoryContainer = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -43,8 +44,8 @@ export const AdminItemBody = styled(Link)`
 `;
 
 export const AdminDirectoryItemContainer = styled.div`
-  min-width: 30%;
-  height: 240px;
+  width: 45%; /* Set the width to make sure only two items fit in a row */
+  height: 640px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;

@@ -10,10 +10,9 @@ import {
     EditMealTypeModalContainer,
 } from "./meal-type-item.styles";
 
+import { MealTypesContext } from "../../../../contexts/meal-types.context";
+import ConfirmationPopup from "../../../confirmation-pop/confirmation-pop.component";
 import EditMealTypeForm from "../edit-meal-type-form/edit-meal-type-form.component";
-import { MealTypesContext } from "../../contexts/meal-types.context";
-import ConfirmationPopup from "../confirmation-pop/confirmation-pop.component";
-
 
 const MealTypeItem = ({ mealType }) => {
     const { id, title, description, imageUrl, calories } = mealType;
