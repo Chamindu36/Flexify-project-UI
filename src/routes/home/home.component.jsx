@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Directory from "../../components/directory/directory.component";
+import { HomeComponentContainer } from "./home.styles";
 
 const Home = () => {
     const menuItems = [
@@ -26,15 +27,16 @@ const Home = () => {
         {
             id: 5,
             title: 'Admin Page',
-            imageUrl: 'https://i.ibb.co/qFJSsGm/360-F-233890979-TGgl-Gkq-Y84h-Y2ze-KTyc-SVo-DCMP1u-Tz4m.jpg',
+            imageUrl: 'https://i.ibb.co/xMRGtpp/62ac585abda08847a1a4be68-andrew-neel-cckf4-Ts-HAuw-unsplash-2-p-1080.jpg',
         },
     ];
 
     return (
-        <div className="categories-container">
+        <HomeComponentContainer>
+            <Outlet />
             <Outlet />
             <Directory menuItems={menuItems} />
-        </div>
+        </HomeComponentContainer>
     );
 };
 

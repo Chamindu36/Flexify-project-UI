@@ -1,9 +1,9 @@
-import Button from "../button/button.component";
-import FormInput from "../form-input/form-input.components";
-import { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import Button from "../../../button/button.component";
+import FormInput from "../../../form-input/form-input.components";
+import { BUTTON_TYPE_CLASSES } from "../../../button/button.component";
 
 import { AddMealTypeFormContainer, ButtonsContainer } from "./add-meal-type-form.styles";
-import { MealTypesContext } from "../../contexts/meal-types.context";
+import { MealTypesContext } from "../../../../contexts/meal-types.context";
 const { useState, useContext } = require("react");
 
 const defaultFormState = {
