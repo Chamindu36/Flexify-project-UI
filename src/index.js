@@ -7,13 +7,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { UserProvider } from './contexts/user.context';
+import { MealTypesProvider } from './contexts/meal-types.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <MealTypesProvider>
+          <App />
+        </MealTypesProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
