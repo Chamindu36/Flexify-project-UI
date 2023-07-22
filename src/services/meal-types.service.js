@@ -43,6 +43,11 @@ export const getMealType = async (mealTypeTitle) =>
     MEAL_TYPES.find((mealType) => mealType.title.toLocaleLowerCase === mealTypeTitle);
 
 export const addMealType = async (newMealTypeInput) => {
+    if (!newMealTypeInput) {
+        return;
+    }
+    console.log("Add meal type service called", newMealTypeInput);
+
     const { title, imageUrl, description, calories } = newMealTypeInput;
     const id = getLastMealTypeId() + 1;
 
@@ -62,6 +67,7 @@ export const addMealType = async (newMealTypeInput) => {
             calories,
         });
     }
+    return MEAL_TYPES;
 }
 
 export const deleteMealType = async (mealTypeTitle) => {
@@ -72,9 +78,11 @@ export const deleteMealType = async (mealTypeTitle) => {
     if (mealTypeIndex !== -1) {
         MEAL_TYPES.splice(mealTypeIndex, 1);
     }
+    return MEAL_TYPES;
 }
 
 export const updateMealType = async (mealTypeTitle, updatedMealTypeInput) => {
+    console.log("Update meal type service called", updatedMealTypeInput);
     const { title, imageUrl, description, calories } = updatedMealTypeInput;
 
     const mealTypeIndex = MEAL_TYPES.findIndex(
@@ -89,4 +97,5 @@ export const updateMealType = async (mealTypeTitle, updatedMealTypeInput) => {
             calories,
         };
     }
+    return MEAL_TYPES;
 }

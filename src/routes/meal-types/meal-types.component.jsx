@@ -25,6 +25,8 @@ const MealTypes = () => {
         toggleModal();
     }
 
+    console.log("Meal Types in Main component", mealTypes);
+
     return (
         <MealTypesContainer>
             <TitleBlock> Cheat Meal Types</TitleBlock>

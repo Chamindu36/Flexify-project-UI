@@ -37,20 +37,6 @@ export const ButtonContainer = styled.div`
   margin-bottom: 100px;
 `;
 
-export const AddMealTypeFormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 380px;
-  margin: auto;
-  margin-top: 50px;
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 20px;
-
-  h2 {
-    margin: 10px 0;
-  }
-`;
 
 export const AddMealTypeModalContainer = styled(Modal)`
     overlay: {

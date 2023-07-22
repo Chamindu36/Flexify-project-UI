@@ -3,7 +3,8 @@ import FormInput from "../form-input/form-input.components";
 import { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import { AddMealTypeFormContainer, ButtonsContainer } from "./add-meal-type-form.styles";
-const { useState } = require("react");
+import { MealTypesContext } from "../../contexts/meal-types.context";
+const { useState, useContext } = require("react");
 
 const defaultFormState = {
     title: "",
@@ -15,6 +16,7 @@ const defaultFormState = {
 const AddMealTypeForm = ({ handleCancel }) => {
 
     const [formState, setFormState] = useState(defaultFormState);
+    const { addMealType } = useContext(MealTypesContext);
     const { title, imageUrl, description, calories } = formState;
 
     const resetFormFields = () => {
@@ -33,8 +35,14 @@ const AddMealTypeForm = ({ handleCancel }) => {
         setFormState({ ...formState, [name]: value });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
         console.log("handleSubmit Clicked");
+
+        await addMealType(formState);
+
+        handleCancelClick();
     };
 
     return (
@@ -73,10 +81,9 @@ const AddMealTypeForm = ({ handleCancel }) => {
                     name="calories"
                     value={calories} />
                 <ButtonsContainer>
-                    <Button type="submit" > Add Item </Button>
+                    <Button type="submit" onSubmit={handleSubmit}> Add Item </Button>
                     <Button type="cancel" onClick={handleCancelClick} buttonType={BUTTON_TYPE_CLASSES.cancel} > Cancel </Button>
                 </ButtonsContainer>
-
             </form>
 
         </AddMealTypeFormContainer>
