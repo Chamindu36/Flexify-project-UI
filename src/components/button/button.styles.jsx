@@ -46,3 +46,15 @@ export const InvertedButton = styled(BaseButton)`
       border: none;
     }
 `;
+
+export const CancelButton = styled(BaseButton)`
+    background-color: #800000;
+    color: white;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: white;
+      color: #800000;
+      border: 1px solid black;
+    }
+`

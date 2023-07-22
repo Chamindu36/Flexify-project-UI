@@ -1,38 +1,64 @@
 import styled from 'styled-components';
+import Modal from "react-modal";
 
 export const MealTypesContainer = styled.div`
-    width: 55%;
-    min-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 50px auto 0;
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
+  padding: 20px;
 `;
 
 export const MealTypesHeader = styled.div`
-        width: 100%;
-        padding: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid darkgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 20px; /* Adjust the font size */
+  font-weight: bold;
 `;
 
 export const HeaderBlock = styled.div`
-            text - transform: capitalize;
-            width: 23 %;
+  flex: 1;
+  text-align: center;
 
-            &: last - child {
-                width: 8 %;
-            }
+  &:last-child {
+    flex: 0.5;
+  }
 `;
 
-export const Total = styled.div`
-        margin - top: 30px;
-        margin - left: auto;
-        font - size: 36px;
+export const TitleBlock = styled.h1`
+  text-align: center;
 `;
 
 export const ButtonContainer = styled.div`
-        margin - top: 50px;
-        allign - items: right;
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+  margin-bottom: 100px;
+`;
+
+export const AddMealTypeFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+
+  h2 {
+    margin: 10px 0;
+  }
+`;
+
+export const AddMealTypeModalContainer = styled(Modal)`
+    overlay: {
+      backgroundColor: "transparent", // Remove the background
+    },
+    content: {
+      border: "none", // Remove the border
+      background: "none", // Remove any background color
+      padding: "0", // Optional: Remove any padding
+    },
 `;

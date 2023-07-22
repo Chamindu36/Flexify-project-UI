@@ -1,6 +1,15 @@
 import { useContext } from "react";
 import { MealTypesContext } from "../../contexts/meal-types.context";
-import { ButtonContainer, BaseSpan, EditButton, MealTypeImageContainer, MealTypeItemContainer, RemoveButton, Description } from "./meal-type-item.styles";
+import {
+    ButtonContainer,
+    BaseSpan,
+    EditButton,
+    MealTypeImageContainer,
+    MealTypeItemContainer,
+    RemoveButton,
+    Description,
+    Value,
+} from "./meal-type-item.styles";
 
 
 const MealTypeItem = ({ mealType }) => {
@@ -19,7 +28,7 @@ const MealTypeItem = ({ mealType }) => {
             <MealTypeImageContainer>
                 <img src={imageUrl} alt={`${title}`} />
             </MealTypeImageContainer>
-            <Description> {description} </Description>
+            <BaseSpan> {description} </BaseSpan>
             <BaseSpan> {calories} </BaseSpan>
             <ButtonContainer>
                 <EditButton onClick={updateMealItem}>

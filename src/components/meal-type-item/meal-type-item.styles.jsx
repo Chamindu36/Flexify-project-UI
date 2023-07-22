@@ -7,7 +7,11 @@ export const MealTypeItemContainer = styled.div`
   border-bottom: 1px solid darkgrey;
   padding: 15px 0;
   font-size: 20px;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: bold;
 `;
 
 export const ButtonContainer = styled.div`
@@ -28,27 +32,46 @@ export const MealTypeImageContainer = styled.div`
 
 export const BaseSpan = styled.span`
   width: 30%;
+    flex: 1;
+  text-align: center;
+
+  &:last-child {
+    flex: 0.5;
+  }
 `;
 
 export const Description = styled(BaseSpan)`
-  display: flex;
-`;
+  flex: 1;
+  text-align: center;
 
-export const Arrow = styled.div`
-  cursor: pointer;
-`;
+  &:last-child {
+    flex: 0.5;
+  }`;
 
 export const Value = styled.span`
-  margin: 0 10px;
-`;
+  flex: 1;
+  text-align: center;
+
+  &:last-child {
+    flex: 0.5;
+  }`;
 
 export const RemoveButton = styled.div`
-  padding-left: 12px;
+  flex: 1;
+  text-align: center;
   cursor: pointer;
-  justify-content: flex-end;
-`;
+
+  &:last-child {
+    flex: 0.5;
+  }
+  `;
 
 export const EditButton = styled.div`
-  padding-left: 12px;
   cursor: pointer;
+  flex: 1;
+  text-align: center;
+
+  &:last-child {
+    flex: 0.5;
+  }
 `;
