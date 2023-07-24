@@ -6,6 +6,7 @@ import Authentication from './routes/authentication/authentication.component';
 import AdminDirectory from './components/admin-directory/admin-directory.component';
 import MealTypes from './routes/meal-types/meal-types.component';
 import WorkoutTypes from './routes/workout-types/workout-types.component';
+import WorkoutEntries from './routes/workouts/workouts.component';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="auth" element={<Authentication />} />
         <Route path="admin page" element={<AdminDirectory />} />
         <Route path="cheat meals" element={<CheatMeals />} />
+        <Route path="workouts" element={<WorkoutEntries />} />
         <Route path="meal-types" element={<MealTypes />} />
         <Route path="workout-types" element={<WorkoutTypes />} />
       </Route>
