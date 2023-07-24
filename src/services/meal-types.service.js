@@ -1,34 +1,34 @@
 const MEAL_TYPES = [
     {
-        id: 1,
+        id: '1',
         title: 'Pizza',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
         description: 'Pizza',
         calories: 300,
     },
     {
-        id: 2,
+        id: '2',
         title: 'Burger',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Ham Burger',
         calories: 400,
     },
     {
-        id: 3,
+        id: '3',
         title: 'Pasta',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Pasta Chicken',
         calories: 500,
     },
     {
-        id: 4,
+        id: '4',
         title: 'Cheese Fries',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Cheese Fries',
         calories: 600,
     },
     {
-        id: 5,
+        id: '5',
         title: 'Ice Cream',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Ice Cream',
@@ -39,8 +39,8 @@ const getLastMealTypeId = () => MEAL_TYPES[MEAL_TYPES.length - 1].id;
 
 export const getMealTypes = async () => MEAL_TYPES;
 
-export const getMealType = async (mealTypeTitle) =>
-    MEAL_TYPES.find((mealType) => mealType.title.toLocaleLowerCase === mealTypeTitle);
+export const getMealType = async (mealTypeId) =>
+    MEAL_TYPES.find((mealType) => mealType.id === mealTypeId);
 
 export const addMealType = async (newMealTypeInput) => {
     if (!newMealTypeInput) {

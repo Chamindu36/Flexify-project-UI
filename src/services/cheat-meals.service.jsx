@@ -1,3 +1,5 @@
+import { getMealType } from "./meal-types.service";
+
 const CHEAT_MEALS = [
     {
         entryId: '1',
@@ -5,7 +7,7 @@ const CHEAT_MEALS = [
         mealType: 'Pizza',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
         consumedTime: new Date(2023, 7, 1),
-        weight: '100',
+        weight: '100.5',
     },
     {
         entryId: '2',
@@ -13,7 +15,7 @@ const CHEAT_MEALS = [
         mealType: 'Pizza',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
         consumedTime: new Date(2023, 7, 3),
-        weight: '101',
+        weight: '101.2',
     },
     {
         entryId: '3',
@@ -21,7 +23,7 @@ const CHEAT_MEALS = [
         mealType: 'Burger',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         consumedTime: new Date(2023, 7, 3),
-        weight: '101',
+        weight: '101.0',
     },
     {
         entryId: '4',
@@ -29,7 +31,7 @@ const CHEAT_MEALS = [
         mealType: 'Pasta',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         consumedTime: new Date(2023, 7, 3),
-        weight: '105',
+        weight: '98.7',
     },
     {
         entryId: '5',
@@ -50,15 +52,17 @@ export const addCheatMeal = async (newCheatMealInput) => {
     }
     console.log("Add meal type service called", newCheatMealInput);
 
-    const { mealId, mealType, imageUrl, consumedTime, weight } = newCheatMealInput;
+    const { mealId, consumedTime, weight } = newCheatMealInput;
     const id = getLastCheatMealId() + 1;
+
+    const { imageUrl, title } = await getMealType(mealId);
 
     CHEAT_MEALS.push({
         id,
         mealId,
-        mealType,
+        mealType: title,
         imageUrl,
-        consumedTime,
+        consumedTime: new Date(consumedTime),
         weight,
     });
 
@@ -78,7 +82,9 @@ export const deleteCheatMeal = async (mealIdToDelete) => {
 
 export const updateCheatMeal = async (mealIdToUpdate, updatedCheatMealInput) => {
     console.log("Update meal type service called", updatedCheatMealInput);
-    const { mealId, mealType, imageUrl, consumedTime, weight } = updatedCheatMealInput;
+    const { mealId, consumedTime, weight } = updatedCheatMealInput;
+
+    const { imageUrl, title } = await getMealType(mealId);
 
     const mealTypeIndex = CHEAT_MEALS.findIndex(
         (meal) => meal.entryId === mealIdToUpdate,
@@ -87,9 +93,9 @@ export const updateCheatMeal = async (mealIdToUpdate, updatedCheatMealInput) => 
     if (mealTypeIndex !== -1) {
         CHEAT_MEALS[mealTypeIndex] = {
             mealId,
-            mealType,
+            mealType: title,
             imageUrl,
-            consumedTime,
+            consumedTime: new Date(consumedTime),
             weight,
         };
     }

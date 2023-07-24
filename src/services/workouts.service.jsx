@@ -59,7 +59,7 @@ export const addWorkoutEntry = async (newWorkoutInput) => {
         workoutId,
         workoutTitle,
         imageUrl,
-        consumedTime,
+        consumedTime: new Date(consumedTime),
         weight,
     });
 
@@ -90,7 +90,7 @@ export const updateWorkoutEntry = async (entryIdToUpdate, updatedWorkoutInput) =
             workoutId,
             workoutTitle,
             imageUrl,
-            consumedTime,
+            consumedTime: new Date(consumedTime),
             weight,
         };
     }
