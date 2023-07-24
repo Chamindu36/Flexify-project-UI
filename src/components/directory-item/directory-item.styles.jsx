@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const BackgroundImage = styled.div`
   width: 100%;
@@ -35,8 +35,20 @@ export const Body = styled(Link)`
   }
 `;
 
+const floatAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Adjust the floating distance */
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
 export const DirectoryItemContainer = styled.div`
-  min-width: 30%;
+  min-width: 40%;
   height: 340px;
   flex: 1 1 auto;
   display: flex;
@@ -45,6 +57,7 @@ export const DirectoryItemContainer = styled.div`
   border: 1px solid black;
   margin: 0 7.5px 15px;
   overflow: hidden;
+  animation: ${floatAnimation} 3s ease-in-out infinite; /* Apply the animation */
 
   &:first-child {
     margin-right: 7.5px;

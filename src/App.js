@@ -15,6 +15,7 @@ const App = () => {
         <Route path="meals" element={<CheatMeals />} />
         <Route path="auth" element={<Authentication />} />
         <Route path="admin page" element={<AdminDirectory />} />
+        <Route path="cheat meals" element={<CheatMeals />} />
         <Route path="meal-types" element={<MealTypes />} />
         <Route path="workout-types" element={<WorkoutTypes />} />
       </Route>
