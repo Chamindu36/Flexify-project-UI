@@ -9,6 +9,10 @@ export const AdminDirectoryContainer = styled.div`
   justify-content: space-between;
 `;
 
+export const TitleBlock = styled.h1`
+  text-align: center;
+`;
+
 export const AdminItemBackgroundImage = styled.div`
   width: 100%;
   height: 100%;

@@ -20,7 +20,6 @@ const Navigation = () => {
                 </LogoContainer>
                 <Title>FLEXIFY</Title>
                 <NavLinks>
-                    <NavLink to='/meals'>MEALS</NavLink>
                     {
                         currentUser ? (
                             <NavLink as='span' onClick={signOutHandler}>SIGN OUT</NavLink>
