@@ -16,7 +16,7 @@ const Home = () => {
         },
         {
             id: 3,
-            title: 'Reports',
+            title: 'Predictions',
             imageUrl: 'https://i.ibb.co/NK1t5VN/medium-shot-man-training-with-stats.jpg',
         },
         {
