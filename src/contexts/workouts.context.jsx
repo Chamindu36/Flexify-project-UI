@@ -58,8 +58,7 @@ export const WorkoutEntriesProvider = ({ children }) => {
     const addNewWorkoutEntry = async (newWorkoutEntry) => {
         console.log(`Adding ${newWorkoutEntry} to the workout entries in context`);
         try {
-            const workoutEntry = await addWorkoutEntry(newWorkoutEntry);
-            setWorkOutEntries((prevWorkoutEntries) => [...prevWorkoutEntries, workoutEntry]);
+            await addWorkoutEntry(newWorkoutEntry);
         } catch (error) {
             // Handle the error here, if any
         }
@@ -67,9 +66,9 @@ export const WorkoutEntriesProvider = ({ children }) => {
 
     const value = {
         workoutEntries,
-        updateWorkoutEntryItem,
-        deleteWorkoutEntryItem,
-        addNewWorkoutEntry,
+        updateWorkoutEntry: updateWorkoutEntryItem,
+        deleteWorkoutEntry: deleteWorkoutEntryItem,
+        addWorkoutEntry: addNewWorkoutEntry,
     };
 
     return (

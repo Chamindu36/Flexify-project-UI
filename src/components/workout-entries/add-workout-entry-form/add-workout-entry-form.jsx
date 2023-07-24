@@ -1,29 +1,29 @@
-import { CheatMealsContext } from "../../../contexts/cheat-meals.context";
-import { MealTypesContext } from "../../../contexts/meal-types.context";
+import { WorkoutTypesContext } from "../../../contexts/workout-types.context";
+import { WorkoutsContext } from "../../../contexts/workouts.context";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
 import Dropdown from "../../dropdown/dropdown.component";
 import FormInput from "../../form-input/form-input.components";
 
 import {
-    AddCheatMealFormContainer,
+    AddWorkoutEntryFormContainer,
     ButtonsContainer,
-} from "./add-cheat-meal-form.styles";
+} from "./add-workout-entry-form.styles";
 const { useState, useContext } = require("react");
 
 const defaultFormState = {
-    mealId: "",
+    workoutId: "",
     consumedTime: "",
     weight: "",
 };
 
-const AddCheatMealEntryForm = ({ handleCancel }) => {
+const AddWorkoutEntryForm = ({ handleCancel }) => {
 
     const [formState, setFormState] = useState(defaultFormState);
     const [selectedOption, setSelectedOption] = useState('');
-    const { addCheatMeal } = useContext(CheatMealsContext);
+    const { addWorkoutEntry } = useContext(WorkoutsContext);
     const { consumedTime, weight } = formState;
-    const { mealTypes } = useContext(MealTypesContext)
+    const { workoutTypes } = useContext(WorkoutTypesContext)
 
     const resetFormFields = () => {
         setFormState(defaultFormState);
@@ -44,30 +44,29 @@ const AddCheatMealEntryForm = ({ handleCancel }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        await addCheatMeal(formState);
+        await addWorkoutEntry(formState);
 
         handleCancelClick();
     };
 
     const handleDropdownChange = async (event) => {
         setSelectedOption(event.target.value);
-        setFormState({ ...formState, mealId: event.target.value });
+        setFormState({ ...formState, workoutId: event.target.value });
     };
 
-    const mealOptions = mealTypes.map((mealType) => ({
-        label: mealType.title,
-        value: mealType.id,
+    const workoutOptions = workoutTypes.map((workoutType) => ({
+        label: workoutType.title,
+        value: workoutType.id,
     }));
 
-
     return (
-        <AddCheatMealFormContainer>
-            <h2>Add New Cheat Meal Entry</h2>
+        <AddWorkoutEntryFormContainer>
+            <h2>Add New workout Entry</h2>
             <form onSubmit={handleSubmit}>
 
                 <Dropdown
-                    label="Meal Type"
-                    options={mealOptions}
+                    label="Workout Type"
+                    options={workoutOptions}
                     value={selectedOption}
                     onChange={handleDropdownChange}
                 />
@@ -96,8 +95,8 @@ const AddCheatMealEntryForm = ({ handleCancel }) => {
                 </ButtonsContainer>
             </form>
 
-        </AddCheatMealFormContainer>
+        </AddWorkoutEntryFormContainer>
     );
 };
 
-export default AddCheatMealEntryForm;
+export default AddWorkoutEntryForm;

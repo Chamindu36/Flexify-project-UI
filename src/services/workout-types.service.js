@@ -1,48 +1,48 @@
 const WORKOUT_TYPES = [
     {
-        id: 1,
+        id: '1',
         title: 'Running',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
         description: 'Run Activity',
         calories: 8,
     },
     {
-        id: 2,
+        id: '2',
         title: 'Jogging',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Run Activity',
         calories: 400,
     },
     {
-        id: 3,
+        id: '3',
         title: 'Bench Press',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Weight Lifting',
         calories: 500,
     },
     {
-        id: 4,
+        id: '4',
         title: 'Squats',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Weight Lifting',
         calories: 600,
     },
     {
-        id: 5,
+        id: '5',
         title: 'Treadmill',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Cardio',
         calories: 50,
     },
     {
-        id: 6,
+        id: '6',
         title: 'Jump Rope',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Cardio',
         calories: 50,
     },
     {
-        id: 7,
+        id: '7',
         title: 'Yoga',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         description: 'Relaxation',
@@ -54,8 +54,8 @@ const getLastWorkoutTypeId = () => WORKOUT_TYPES[WORKOUT_TYPES.length - 1].id;
 
 export const getWorkoutTypes = async () => WORKOUT_TYPES;
 
-export const getWorkoutType = async (workoutTitle) =>
-    WORKOUT_TYPES.find((workoutType) => workoutType.title.toLocaleLowerCase === workoutTitle);
+export const getWorkoutType = async (id) =>
+    WORKOUT_TYPES.find((workoutType) => workoutType.id === id);
 
 export const addWorkoutType = async (newWorkoutTypeInput) => {
     if (!newWorkoutTypeInput) {

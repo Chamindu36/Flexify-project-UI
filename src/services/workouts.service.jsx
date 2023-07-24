@@ -1,3 +1,5 @@
+import { getWorkoutType } from "./workout-types.service";
+
 const WORKOUTS = [
     {
         entryId: '1',
@@ -48,20 +50,25 @@ export const addWorkoutEntry = async (newWorkoutInput) => {
     if (!newWorkoutInput) {
         return;
     }
-    console.log("Add meal type service called", newWorkoutInput);
+    console.log("Add workout service called", newWorkoutInput);
 
-    const { workoutId, workoutTitle, imageUrl, consumedTime, weight } = newWorkoutInput;
+    const { workoutId, consumedTime, weight } = newWorkoutInput;
     const entryId = getLastWorkoutEntryId() + 1;
+
+    console.log("entryId", entryId);
+
+    const { imageUrl, title } = await getWorkoutType(workoutId);
 
 
     WORKOUTS.push({
         entryId,
         workoutId,
-        workoutTitle,
+        workoutTitle: title,
         imageUrl,
         consumedTime: new Date(consumedTime),
         weight,
     });
+
 
     return WORKOUTS;
 }
@@ -79,16 +86,18 @@ export const deleteWorkoutEntry = async (entryIdToDelete) => {
 
 export const updateWorkoutEntry = async (entryIdToUpdate, updatedWorkoutInput) => {
     console.log("Update meal type service called", updatedWorkoutInput);
-    const { workoutId, workoutTitle, imageUrl, consumedTime, weight } = updatedWorkoutInput;
+    const { workoutId, consumedTime, weight } = updatedWorkoutInput;
 
     const mealTypeIndex = WORKOUTS.findIndex(
         (entry) => entry.entryId === entryIdToUpdate,
     );
 
+    const { imageUrl, title } = await getWorkoutType(workoutId);
+
     if (mealTypeIndex !== -1) {
         WORKOUTS[mealTypeIndex] = {
             workoutId,
-            workoutTitle,
+            workoutTitle: title,
             imageUrl,
             consumedTime: new Date(consumedTime),
             weight,
