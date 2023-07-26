@@ -7,6 +7,7 @@ import AdminDirectory from './components/admin-directory/admin-directory.compone
 import MealTypes from './routes/meal-types/meal-types.component';
 import WorkoutTypes from './routes/workout-types/workout-types.component';
 import WorkoutEntries from './routes/workouts/workouts.component';
+import WeeklySummary from './routes/weekly-summary/weekly-summary.component';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="workouts" element={<WorkoutEntries />} />
         <Route path="meal-types" element={<MealTypes />} />
         <Route path="workout-types" element={<WorkoutTypes />} />
+        <Route path="weekly summary" element={<WeeklySummary />} />
       </Route>
     </Routes>
   );

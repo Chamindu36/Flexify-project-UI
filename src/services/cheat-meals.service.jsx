@@ -2,7 +2,7 @@ import { getMealType } from "./meal-types.service";
 
 const CHEAT_MEALS = [
     {
-        entryId: '1',
+        entryId: '11',
         mealId: '1',
         mealType: 'Pizza',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
@@ -10,7 +10,7 @@ const CHEAT_MEALS = [
         weight: '100.5',
     },
     {
-        entryId: '2',
+        entryId: '12',
         mealId: '1',
         mealType: 'Pizza',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
@@ -18,7 +18,7 @@ const CHEAT_MEALS = [
         weight: '101.2',
     },
     {
-        entryId: '3',
+        entryId: '13',
         mealId: '2',
         mealType: 'Burger',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
@@ -26,7 +26,7 @@ const CHEAT_MEALS = [
         weight: '101.0',
     },
     {
-        entryId: '4',
+        entryId: '14',
         mealId: '3',
         mealType: 'Pasta',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
@@ -34,7 +34,7 @@ const CHEAT_MEALS = [
         weight: '98.7',
     },
     {
-        entryId: '5',
+        entryId: '15',
         mealId: '4',
         mealType: 'Cheese Fries',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',

@@ -6,13 +6,12 @@ export const WorkoutEntryItemContainer = styled.div`
   display: flex;
   min-height: 100px;
   border-bottom: 1px solid darkgrey;
-  padding: 15px 0;
+  padding: 10px 0;
   font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
-  font-weight: bold;
 `;
 
 export const ButtonContainer = styled.div`
@@ -27,7 +26,7 @@ export const WorkoutEntryImageContainer = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
+    height: 50%;
   }
 `;
 
