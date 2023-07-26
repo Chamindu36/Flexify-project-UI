@@ -2,7 +2,7 @@ import { getWorkoutType } from "./workout-types.service";
 
 const WORKOUTS = [
     {
-        entryId: '1',
+        entryId: '21',
         workoutId: '1',
         workoutTitle: 'Running',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
@@ -10,7 +10,23 @@ const WORKOUTS = [
         weight: '100',
     },
     {
-        entryId: '2',
+        entryId: '22',
+        workoutId: '1',
+        workoutTitle: 'Running',
+        imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
+        consumedTime: new Date(2023, 7, 12),
+        weight: '100',
+    },
+    {
+        entryId: '23',
+        workoutId: '1',
+        workoutTitle: 'Running',
+        imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
+        consumedTime: new Date(2023, 7, 7),
+        weight: '100',
+    },
+    {
+        entryId: '24',
         workoutId: '1',
         workoutTitle: 'Running',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
@@ -18,23 +34,7 @@ const WORKOUTS = [
         weight: '100',
     },
     {
-        entryId: '3',
-        workoutId: '1',
-        workoutTitle: 'Running',
-        imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
-        consumedTime: new Date(2023, 7, 1),
-        weight: '100',
-    },
-    {
-        entryId: '4',
-        workoutId: '1',
-        workoutTitle: 'Running',
-        imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
-        consumedTime: new Date(2023, 7, 1),
-        weight: '100',
-    },
-    {
-        entryId: '5',
+        entryId: '25',
         workoutId: '1',
         workoutTitle: 'Running',
         imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',

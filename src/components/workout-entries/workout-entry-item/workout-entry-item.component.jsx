@@ -15,7 +15,7 @@ import EditWorkoutEntryForm from "../edit-workout-entry-form/edit-workout-entry-
 import { WorkoutsContext } from "../../../contexts/workouts.context";
 
 const WorkoutEntry = ({ workout }) => {
-    const { entryId, workoutId, workoutTitle, imageUrl, consumedTime, weight } = workout;
+    const { entryId, workoutTitle, imageUrl, consumedTime, weight } = workout;
     const [showEditModal, setShowEditModal] = useState(false);
     const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
     const { deleteWorkoutEntry } = useContext(WorkoutsContext);

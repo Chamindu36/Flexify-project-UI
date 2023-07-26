@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Modal from "react-modal";
 
-export const CheatMealeItemContainer = styled.div`
+export const CheatMealItemContainer = styled.div`
   width: 100%;
   display: flex;
-  min-height: 100px;
+  min-height: 80px;
   border-bottom: 1px solid darkgrey;
   padding: 15px 0;
   font-size: 20px;

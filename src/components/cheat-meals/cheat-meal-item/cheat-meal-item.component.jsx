@@ -7,7 +7,7 @@ import {
     RemoveButton,
     CheatMealImageContainer,
     EditCheatMealModalContainer,
-    CheatMealeItemContainer,
+    CheatMealItemContainer,
 } from "./cheat-meal-item.styles";
 
 import ConfirmationPopup from "../../confirmation-pop/confirmation-pop.component";
@@ -48,7 +48,7 @@ const CheatMealItem = ({ cheatMeal }) => {
     };
 
     return (
-        <CheatMealeItemContainer key={entryId}>
+        <CheatMealItemContainer key={entryId}>
             <CheatMealImageContainer>
                 <img src={imageUrl} alt={`${mealType}`} />
             </CheatMealImageContainer>
@@ -82,7 +82,7 @@ const CheatMealItem = ({ cheatMeal }) => {
                 onCancel={() => setShowConfirmationPopup(false)}
                 onConfirm={handleRemoveConfirm}
             />
-        </CheatMealeItemContainer>
+        </CheatMealItemContainer>
     )
 };
 
