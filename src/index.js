@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { UserProvider } from './contexts/user.context';
 import { MealTypesProvider } from './contexts/meal-types.context';
 import { WorkoutTypesProvider } from './contexts/workout-types.context';
 import { CheatMealsProvider } from './contexts/cheat-meals.context';
 import { WorkoutEntriesProvider } from './contexts/workouts.context';
 
+import { store } from './store/root-store';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
         <MealTypesProvider>
           <WorkoutTypesProvider>
             <CheatMealsProvider>
@@ -26,8 +28,8 @@ root.render(
             </CheatMealsProvider>
           </WorkoutTypesProvider>
         </MealTypesProvider>
-      </UserProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

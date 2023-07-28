@@ -1,13 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
+
 
 import { Title, LogoContainer, NavLink, NavLinks, NavigationContainer } from './navigation.styles';
-import { UserContext } from '../../contexts/user.context';
 import { ReactComponent as HomeLogo } from '../../assets/fitness-app.svg';
 import { signOutUser } from '../../utils/firebase.utils';
+import { selectCurrentUser } from '../../store/user/user.selector';
 
 const Navigation = () => {
-    const { currentUser } = useContext(UserContext);
+    const currentUser = useSelector(selectCurrentUser);
 
     const signOutHandler = async () => {
         await signOutUser();
