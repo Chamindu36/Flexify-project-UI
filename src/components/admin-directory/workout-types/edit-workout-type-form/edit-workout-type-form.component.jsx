@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 
 import {
     EditWorkoutTypeFormContainer,
@@ -7,10 +8,11 @@ import {
 } from "./edit-workout-type-form.styles";
 import FormInput from "../../../form-input/form-input.components";
 import Button, { BUTTON_TYPE_CLASSES } from "../../../button/button.component";
+import { updateWorkoutTypeAction } from "../../../../store/workout-type/workout-type.action";
 
-import { WorkoutTypesContext } from "../../../../contexts/workout-types.context";
 
 const EditWorkoutTypeForm = ({ workoutType, handleCancel, handleEdit }) => {
+    const dispatch = useDispatch();
 
     const [formState, setFormState] = useState({
         title: workoutType.title,
@@ -19,7 +21,6 @@ const EditWorkoutTypeForm = ({ workoutType, handleCancel, handleEdit }) => {
         calories: workoutType.calories,
     });
 
-    const { updateWorkoutType } = useContext(WorkoutTypesContext);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -35,7 +36,7 @@ const EditWorkoutTypeForm = ({ workoutType, handleCancel, handleEdit }) => {
 
         handleEdit(formState);
 
-        await updateWorkoutType(formState.title, formState);
+        dispatch(await updateWorkoutTypeAction(formState.title, formState));
 
         handleCancelClick();// Pass the edited form data to the parent component
     };

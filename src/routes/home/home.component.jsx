@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { Outlet } from "react-router";
 
 import { HomeComponentContainer } from "./home.styles";

@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 
 import {
     ButtonContainer,
@@ -10,15 +11,16 @@ import {
     EditWorkoutTypeModalContainer,
 } from "./workout-type-item.styles";
 
-import { WorkoutTypesContext } from "../../../../contexts/workout-types.context";
 import ConfirmationPopup from "../../../confirmation-pop/confirmation-pop.component";
 import EditWorkoutTypeForm from "../edit-workout-type-form/edit-workout-type-form.component";
+import { deleteWorkoutTypeAction } from "../../../../store/workout-type/workout-type.action";
 
 const WorkOutTypeItem = ({ workoutType }) => {
+    const dispatch = useDispatch();
+
     const { id, title, description, imageUrl, calories } = workoutType;
     const [showEditModal, setShowEditModal] = useState(false);
     const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
-    const { deleteWorkoutType } = useContext(WorkoutTypesContext);
 
     const removeWorkoutItem = () => {
         console.log('removeWorkoutItem Clicked');
@@ -30,7 +32,7 @@ const WorkOutTypeItem = ({ workoutType }) => {
         setShowConfirmationPopup(false);
 
         // pass the workout type title to the deleteWorkoutType functions
-        await deleteWorkoutType(workoutType.title);
+        dispatch(await deleteWorkoutTypeAction(workoutType.title));
     };
 
     const updateWorkoutItem = async () => {

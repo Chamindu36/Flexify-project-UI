@@ -1,10 +1,12 @@
+import { useDispatch } from 'react-redux';
+
 import Button from "../../../button/button.component";
 import FormInput from "../../../form-input/form-input.components";
 import { BUTTON_TYPE_CLASSES } from "../../../button/button.component";
+import { addWorkoutTypeAction } from '../../../../store/workout-type/workout-type.action';
 
 import { AddWorkoutTypeFormContainer, ButtonsContainer } from "./add-workout-type-form.styles";
-import { WorkoutTypesContext } from "../../../../contexts/workout-types.context";
-const { useState, useContext } = require("react");
+const { useState } = require("react");
 
 const defaultFormState = {
     title: "",
@@ -14,9 +16,9 @@ const defaultFormState = {
 };
 
 const AddWorkoutTypeForm = ({ handleCancel }) => {
+    const dispatch = useDispatch();
 
     const [formState, setFormState] = useState(defaultFormState);
-    const { addWorkoutType } = useContext(WorkoutTypesContext);
     const { title, imageUrl, description, calories } = formState;
 
     const resetFormFields = () => {
@@ -40,7 +42,7 @@ const AddWorkoutTypeForm = ({ handleCancel }) => {
 
         console.log("handleSubmit Clicked");
 
-        await addWorkoutType(formState);
+        dispatch(await addWorkoutTypeAction(formState));
 
         handleCancelClick();
     }

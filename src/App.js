@@ -16,6 +16,8 @@ import MealTypes from './routes/meal-types/meal-types.component';
 import WorkoutTypes from './routes/workout-types/workout-types.component';
 import WorkoutEntries from './routes/workouts/workouts.component';
 import WeeklySummary from './routes/weekly-summary/weekly-summary.component';
+import { getWorkoutTypes } from './services/workout-types.service';
+import { setWorkoutTypes } from './store/workout-type/workout-type.action';
 
 
 const App = () => {
@@ -29,6 +31,16 @@ const App = () => {
     };
 
     fetchMealTypes();
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchWorkoutTypes = async () => {
+      const data = await getWorkoutTypes();
+      console.log("AA Workout types", data);
+      dispatch(await setWorkoutTypes(data));
+    };
+
+    fetchWorkoutTypes();
   }, [dispatch]);
 
   useEffect(() => {

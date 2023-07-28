@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
-
-import { WorkoutTypesContext } from "../../contexts/workout-types.context";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import {
     WorkoutTypesContainer,
@@ -14,9 +13,12 @@ import {
 import Button, { BUTTON_TYPE_CLASSES } from "../../components/button/button.component";
 import WorkoutTypeItem from "../../components/admin-directory/workout-types/workout-type-item/workout-type-item.component";
 import AddWorkoutTypeForm from "../../components/admin-directory/workout-types/add-workout-type-form/add-meal-type-form.component";
+import { selectWorkoutTypes } from "../../store/workout-type/workout.selector";
 
 const WorkoutTypes = () => {
-    const { workoutTypes } = useContext(WorkoutTypesContext);
+    const workoutTypes = useSelector(selectWorkoutTypes);
+    console.log("OO", workoutTypes);
+
     const [showModal, setShowModal] = useState(false);
 
     const toggleModal = () => {
