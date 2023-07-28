@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useSelector } from 'react-redux';
 
 import {
     EditCheatMealFormModalContainer,
@@ -10,13 +11,14 @@ import FormInput from "../../form-input/form-input.components";
 import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
 import { CheatMealsContext } from "../../../contexts/cheat-meals.context";
 import Dropdown from "../../dropdown/dropdown.component";
-import { MealTypesContext } from "../../../contexts/meal-types.context";
+
+import { selectMealTypes } from '../../../store/meal-type/meal-type.selector';
 
 const EditCheatMealForm = ({ cheatMeal, handleCancel, handleEdit }) => {
 
     console.log("Edit CheatMealForm", cheatMeal);
     const [selectedOption, setSelectedOption] = useState('');
-    const { mealTypes } = useContext(MealTypesContext);
+    const mealTypes = useSelector(selectMealTypes)
 
     const [formState, setFormState] = useState({
         mealId: cheatMeal.mealId,

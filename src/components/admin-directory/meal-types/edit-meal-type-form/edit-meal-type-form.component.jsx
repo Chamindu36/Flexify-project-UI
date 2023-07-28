@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 
 import {
     EditMealTypeFormContainer,
@@ -7,10 +8,11 @@ import {
 } from "./edit-meal-type-form.styles";
 import FormInput from "../../../form-input/form-input.components";
 import Button, { BUTTON_TYPE_CLASSES } from "../../../button/button.component";
-
-import { MealTypesContext } from "../../../../contexts/meal-types.context";
+import { updateMealTypeAction } from '../../../../store/meal-type/meal-type.action';
 
 const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
+
+    const dispatch = useDispatch();
 
     const [formState, setFormState] = useState({
         title: mealType.title,
@@ -19,7 +21,6 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
         calories: mealType.calories,
     });
 
-    const { updateMealType } = useContext(MealTypesContext);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -35,7 +36,7 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
 
         handleEdit(formState);
 
-        await updateMealType(formState.title, formState);
+        dispatch(await updateMealTypeAction(formState.title, formState));
 
         handleCancelClick();// Pass the edited form data to the parent component
     };

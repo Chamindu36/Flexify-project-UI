@@ -1,9 +1,10 @@
 import { CheatMealsContext } from "../../../contexts/cheat-meals.context";
-import { MealTypesContext } from "../../../contexts/meal-types.context";
+import { useSelector } from "react-redux";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
 import Dropdown from "../../dropdown/dropdown.component";
 import FormInput from "../../form-input/form-input.components";
+import { selectMealTypes } from '../../../store/meal-type/meal-type.selector';
 
 import {
     AddCheatMealFormContainer,
@@ -23,7 +24,8 @@ const AddCheatMealEntryForm = ({ handleCancel }) => {
     const [selectedOption, setSelectedOption] = useState('');
     const { addCheatMeal } = useContext(CheatMealsContext);
     const { consumedTime, weight } = formState;
-    const { mealTypes } = useContext(MealTypesContext)
+
+    const mealTypes = useSelector(selectMealTypes)
 
     const resetFormFields = () => {
         setFormState(defaultFormState);

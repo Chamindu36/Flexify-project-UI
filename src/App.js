@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 
 import { setCurrentUser } from './store/user/user.action';
 import { onAuthStateChangedListener, createUserDocumentFromAuth } from './utils/firebase.utils';
+import { getMealTypes } from './services/meal-types.service';
+import { setMealTypes } from './store/meal-type/meal-type.action';
 
 import Navigation from './routes/navigation/navigation.component';
 import Home from './routes/home/home.component';
@@ -15,9 +17,19 @@ import WorkoutTypes from './routes/workout-types/workout-types.component';
 import WorkoutEntries from './routes/workouts/workouts.component';
 import WeeklySummary from './routes/weekly-summary/weekly-summary.component';
 
+
 const App = () => {
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchMealTypes = async () => {
+      const data = await getMealTypes();
+      dispatch(await setMealTypes(data));
+    };
+
+    fetchMealTypes();
+  }, [dispatch]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
