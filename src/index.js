@@ -7,7 +7,6 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { CheatMealsProvider } from './contexts/cheat-meals.context';
 import { WorkoutEntriesProvider } from './contexts/workouts.context';
 
 import { store } from './store/root-store';
@@ -17,11 +16,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <CheatMealsProvider>
-          <WorkoutEntriesProvider>
-            <App />
-          </WorkoutEntriesProvider>
-        </CheatMealsProvider>
+        <WorkoutEntriesProvider>
+          <App />
+        </WorkoutEntriesProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

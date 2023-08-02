@@ -18,7 +18,8 @@ import WorkoutEntries from './routes/workouts/workouts.component';
 import WeeklySummary from './routes/weekly-summary/weekly-summary.component';
 import { getWorkoutTypes } from './services/workout-types.service';
 import { setWorkoutTypes } from './store/workout-type/workout-type.action';
-
+import { getCheatMeals } from './services/cheat-meals.service';
+import { setCheatMeals } from './store/cheat-meal/cheat-meal.action';
 
 const App = () => {
 
@@ -36,11 +37,19 @@ const App = () => {
   useEffect(() => {
     const fetchWorkoutTypes = async () => {
       const data = await getWorkoutTypes();
-      console.log("AA Workout types", data);
       dispatch(await setWorkoutTypes(data));
     };
 
     fetchWorkoutTypes();
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchCheatMeals = async () => {
+      const data = await getCheatMeals();
+      dispatch(await setCheatMeals(data));
+    };
+
+    fetchCheatMeals();
   }, [dispatch]);
 
   useEffect(() => {

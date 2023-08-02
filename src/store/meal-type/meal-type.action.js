@@ -41,7 +41,7 @@ export const addMealTypeAction = async (newData) => {
 
 export const updateMealTypeAction = async (title, updatedData) => {
     const newMealTypes = await updateMealTypes(title, updatedData);
-    return createAction(MEAL_TYPE_ACTION_TYPES.UPDATE_MEAL_TYPES, newMealTypes);
+    return createAction(MEAL_TYPE_ACTION_TYPES.SET_MEAL_TYPES, newMealTypes);
 };
 
 export const deleteMealTypeAction = async (title) => {

@@ -50,7 +50,6 @@ export const addCheatMeal = async (newCheatMealInput) => {
     if (!newCheatMealInput) {
         return;
     }
-    console.log("Add meal type service called", newCheatMealInput);
 
     const { mealId, consumedTime, weight } = newCheatMealInput;
     const id = getLastCheatMealId() + 1;
