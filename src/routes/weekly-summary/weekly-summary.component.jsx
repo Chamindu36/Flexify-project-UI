@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { useSelector } from 'react-redux';
 
 import { WorkoutsContext } from "../../contexts/workouts.context";
-import { CheatMealsContext } from "../../contexts/cheat-meals.context";
 
 import {
     WeeklySummaryContainer,
@@ -12,11 +12,12 @@ import {
 
 import WorkoutSummaryItem from "../../components/summary-item/workout-summary-item/workout-summary-item.component";
 import CheatMealSummaryItem from '../../components/summary-item/chet-meal-summary-item/cheat-meal-summary-item.component';
+import { selectCheatMeals } from '../../store/cheat-meal/cheat-meal.selector'
 
 const WeeklySummary = () => {
 
     const { workoutEntries } = useContext(WorkoutsContext);
-    const { cheatMeals } = useContext(CheatMealsContext);
+    const cheatMeals = useSelector(selectCheatMeals);
 
     // get all the entries and sort them by consumed time in descending
     const entries = cheatMeals.concat(workoutEntries).sort((a, b) => {

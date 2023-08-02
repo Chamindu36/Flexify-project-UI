@@ -1,4 +1,4 @@
-import { CheatMealsContext } from "../../../contexts/cheat-meals.context";
+import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
@@ -6,11 +6,13 @@ import Dropdown from "../../dropdown/dropdown.component";
 import FormInput from "../../form-input/form-input.components";
 import { selectMealTypes } from '../../../store/meal-type/meal-type.selector';
 
+import { addCheatMealAction } from '../../../store/cheat-meal/cheat-meal.action';
+
 import {
     AddCheatMealFormContainer,
     ButtonsContainer,
 } from "./add-cheat-meal-form.styles";
-const { useState, useContext } = require("react");
+const { useState } = require("react");
 
 const defaultFormState = {
     mealId: "",
@@ -19,10 +21,11 @@ const defaultFormState = {
 };
 
 const AddCheatMealEntryForm = ({ handleCancel }) => {
+    const dispatch = useDispatch();
 
     const [formState, setFormState] = useState(defaultFormState);
     const [selectedOption, setSelectedOption] = useState('');
-    const { addCheatMeal } = useContext(CheatMealsContext);
+
     const { consumedTime, weight } = formState;
 
     const mealTypes = useSelector(selectMealTypes)
@@ -46,7 +49,7 @@ const AddCheatMealEntryForm = ({ handleCancel }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        await addCheatMeal(formState);
+        dispatch(await addCheatMealAction(formState));
 
         handleCancelClick();
     };

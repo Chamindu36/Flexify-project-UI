@@ -17,7 +17,6 @@ import { selectCheatMeals } from '../../store/cheat-meal/cheat-meal.selector'
 
 const CheatMeals = () => {
     const cheatMeals = useSelector(selectCheatMeals);
-    console.log("=======", cheatMeals);
 
     const [showModal, setShowModal] = useState(false);
 

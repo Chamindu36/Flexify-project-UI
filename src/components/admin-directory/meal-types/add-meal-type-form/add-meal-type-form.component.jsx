@@ -43,8 +43,6 @@ const AddMealTypeForm = ({ handleCancel }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log("Meal Type add button Clicked");
-
         dispatch(await addMealTypeAction(formState));
 
         handleCancelClick();

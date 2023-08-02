@@ -18,6 +18,7 @@ const updateCheatMealItem = async (id, updatedData) => {
 
 const deleteCheatMealItem = async (id) => {
     try {
+        console.log(`Deleting cheat meal with id ${id}`);
         return await deleteCheatMeal(id);
     } catch (error) {
         // Handle the error here, if any

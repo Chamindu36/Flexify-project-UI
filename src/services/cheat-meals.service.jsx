@@ -70,7 +70,7 @@ export const addCheatMeal = async (newCheatMealInput) => {
 
 export const deleteCheatMeal = async (mealIdToDelete) => {
     const mealTypeIndex = CHEAT_MEALS.findIndex(
-        (meal) => meal.mealId === mealIdToDelete,
+        (meal) => meal.entryId === mealIdToDelete,
     );
 
     if (mealTypeIndex !== -1) {
