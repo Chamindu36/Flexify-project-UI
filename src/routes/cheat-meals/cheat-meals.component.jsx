@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { CheatMealsContext } from "../../contexts/cheat-meals.context";
+import React, { useState } from "react";
+import { useSelector } from 'react-redux';
 
 import {
     CheatMealsContainer,
@@ -13,9 +13,11 @@ import {
 import Button, { BUTTON_TYPE_CLASSES } from "../../components/button/button.component";
 import CheatMealItem from "../../components/cheat-meals/cheat-meal-item/cheat-meal-item.component";
 import AddCheatMealEntryForm from "../../components/cheat-meals/add-cheat-meal-form/add-cheat-meal-form";
+import { selectCheatMeals } from '../../store/cheat-meal/cheat-meal.selector'
 
 const CheatMeals = () => {
-    const { cheatMeals } = useContext(CheatMealsContext);
+    const cheatMeals = useSelector(selectCheatMeals);
+
     const [showModal, setShowModal] = useState(false);
 
     const toggleModal = () => {
@@ -25,8 +27,6 @@ const CheatMeals = () => {
     const handleCancel = () => {
         toggleModal();
     };
-
-    console.log("Cheat Meals in Main component", cheatMeals);
 
     return (
         <CheatMealsContainer>

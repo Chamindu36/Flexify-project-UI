@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 
 import {
     ButtonContainer,
@@ -10,15 +11,16 @@ import {
     EditMealTypeModalContainer,
 } from "./meal-type-item.styles";
 
-import { MealTypesContext } from "../../../../contexts/meal-types.context";
 import ConfirmationPopup from "../../../confirmation-pop/confirmation-pop.component";
 import EditMealTypeForm from "../edit-meal-type-form/edit-meal-type-form.component";
+import { deleteMealTypeAction } from "../../../../store/meal-type/meal-type.action";
 
 const MealTypeItem = ({ mealType }) => {
+    const dispatch = useDispatch();
+
     const { id, title, description, imageUrl, calories } = mealType;
     const [showEditModal, setShowEditModal] = useState(false);
     const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
-    const { deleteMealType } = useContext(MealTypesContext);
 
     const removeMealItem = () => {
         console.log('removeMealItem Clicked');
@@ -30,7 +32,7 @@ const MealTypeItem = ({ mealType }) => {
         setShowConfirmationPopup(false);
 
         // pass the meal type title to the deleteMealType functions
-        await deleteMealType(mealType.title);
+        dispatch(await deleteMealTypeAction(mealType.title));
     };
 
     const updateMealItem = async () => {

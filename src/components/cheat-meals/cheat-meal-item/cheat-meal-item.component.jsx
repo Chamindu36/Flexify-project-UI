@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 
 import {
     ButtonContainer,
@@ -12,29 +13,28 @@ import {
 
 import ConfirmationPopup from "../../confirmation-pop/confirmation-pop.component";
 import EditCheatMealForm from "../edit-cheat-meal-form/edit-cheat-meal-form.component";
-import { CheatMealsContext } from "../../../contexts/cheat-meals.context";
+
+import { deleteCheatMealAction } from '../../../store/cheat-meal/cheat-meal.action';
 
 const CheatMealItem = ({ cheatMeal }) => {
+    const dispatch = useDispatch();
+
     const { entryId, mealType, imageUrl, consumedTime, weight } = cheatMeal;
     const [showEditModal, setShowEditModal] = useState(false);
     const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
-    const { deleteCheatMeal } = useContext(CheatMealsContext);
 
     const removeMealItem = () => {
-        console.log('removeMealItem Clicked');
         setShowConfirmationPopup(true);
     };
 
     const handleRemoveConfirm = async () => {
-        console.log('remove Cheat meal Item Confirmed');
         setShowConfirmationPopup(false);
 
         // pass the meal type title to the deleteMealType functions
-        await deleteCheatMeal(cheatMeal.entryId);
+        dispatch(await deleteCheatMealAction(cheatMeal.entryId));
     };
 
     const updateMealItem = async () => {
-        console.log('update Cheat meal Item Clicked');
         setShowEditModal(true);
     };
 
@@ -43,7 +43,6 @@ const CheatMealItem = ({ cheatMeal }) => {
     };
 
     const handleEditCheatMealEntry = (formData) => {
-        console.log("Edited Cheat meal data:", formData);
         setShowEditModal(false);
     };
 

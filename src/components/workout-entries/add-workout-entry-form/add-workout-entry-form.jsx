@@ -1,5 +1,5 @@
-import { WorkoutTypesContext } from "../../../contexts/workout-types.context";
 import { WorkoutsContext } from "../../../contexts/workouts.context";
+import { useSelector } from "react-redux";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
 import Dropdown from "../../dropdown/dropdown.component";
@@ -9,6 +9,7 @@ import {
     AddWorkoutEntryFormContainer,
     ButtonsContainer,
 } from "./add-workout-entry-form.styles";
+import { selectWorkoutTypes } from "../../../store/workout-type/workout.selector";
 const { useState, useContext } = require("react");
 
 const defaultFormState = {
@@ -23,7 +24,7 @@ const AddWorkoutEntryForm = ({ handleCancel }) => {
     const [selectedOption, setSelectedOption] = useState('');
     const { addWorkoutEntry } = useContext(WorkoutsContext);
     const { consumedTime, weight } = formState;
-    const { workoutTypes } = useContext(WorkoutTypesContext)
+    const workoutTypes = useSelector(selectWorkoutTypes);
 
     const resetFormFields = () => {
         setFormState(defaultFormState);

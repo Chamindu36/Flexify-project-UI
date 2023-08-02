@@ -50,7 +50,6 @@ export const addCheatMeal = async (newCheatMealInput) => {
     if (!newCheatMealInput) {
         return;
     }
-    console.log("Add meal type service called", newCheatMealInput);
 
     const { mealId, consumedTime, weight } = newCheatMealInput;
     const id = getLastCheatMealId() + 1;
@@ -71,7 +70,7 @@ export const addCheatMeal = async (newCheatMealInput) => {
 
 export const deleteCheatMeal = async (mealIdToDelete) => {
     const mealTypeIndex = CHEAT_MEALS.findIndex(
-        (meal) => meal.mealId === mealIdToDelete,
+        (meal) => meal.entryId === mealIdToDelete,
     );
 
     if (mealTypeIndex !== -1) {

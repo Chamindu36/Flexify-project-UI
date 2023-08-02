@@ -1,8 +1,12 @@
 import { Outlet } from "react-router";
-import Directory from "../../components/directory/directory.component";
+
 import { HomeComponentContainer } from "./home.styles";
 
+import Directory from "../../components/directory/directory.component";
+
+
 const Home = () => {
+
     const menuItems = [
         {
             id: 1,

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useSelector } from 'react-redux';
 
 import {
     EditWorkoutEntryFormContainer,
@@ -9,13 +10,13 @@ import {
 import FormInput from "../../form-input/form-input.components";
 import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
 import Dropdown from "../../dropdown/dropdown.component";
-import { WorkoutTypesContext } from "../../../contexts/workout-types.context";
 import { WorkoutsContext } from "../../../contexts/workouts.context";
+import { selectWorkoutTypes } from "../../../store/workout-type/workout.selector";
 
 const EditWorkoutEntryForm = ({ workout, handleCancel, handleEdit }) => {
 
     const [selectedOption, setSelectedOption] = useState('');
-    const { workoutTypes } = useContext(WorkoutTypesContext);
+    const workoutTypes = useSelector(selectWorkoutTypes);
 
     const [formState, setFormState] = useState({
         workoutId: workout.mealId,

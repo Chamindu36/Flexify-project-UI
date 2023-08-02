@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { MealTypesContext } from "../../contexts/meal-types.context";
+import React, { useState } from "react";
+import { useSelector } from 'react-redux';
 
 import {
     MealTypesContainer,
@@ -9,13 +9,17 @@ import {
     ButtonContainer,
     AddMealTypeModalContainer
 } from "./meal-types.styles";
+
 import Button, { BUTTON_TYPE_CLASSES } from "../../components/button/button.component";
 import AddMealTypeForm from "../../components/admin-directory/meal-types/add-meal-type-form/add-meal-type-form.component";
 import MealTypeItem from "../../components/admin-directory/meal-types/meal-type-item/meal-type-item.component";
+import { selectMealTypes } from "../../store/meal-type/meal-type.selector";
 
 const MealTypes = () => {
-    const { mealTypes } = useContext(MealTypesContext);
+
     const [showModal, setShowModal] = useState(false);
+    const mealTypes = useSelector(selectMealTypes);
+
 
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -24,8 +28,6 @@ const MealTypes = () => {
     const handleCancel = () => {
         toggleModal();
     }
-
-    console.log("Meal Types in Main component", mealTypes);
 
     return (
         <MealTypesContainer>
@@ -55,7 +57,7 @@ const MealTypes = () => {
                     <span>Remove</span>
                 </HeaderBlock>
             </MealTypesHeader>
-            {mealTypes.map((mealType) => (
+            {mealTypes && mealTypes.map((mealType) => (
                 <MealTypeItem key={mealType.id} mealType={mealType} />
             ))}
         </MealTypesContainer>

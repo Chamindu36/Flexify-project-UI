@@ -1,4 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {
     EditCheatMealFormModalContainer,
@@ -8,23 +10,22 @@ import {
 
 import FormInput from "../../form-input/form-input.components";
 import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
-import { CheatMealsContext } from "../../../contexts/cheat-meals.context";
 import Dropdown from "../../dropdown/dropdown.component";
-import { MealTypesContext } from "../../../contexts/meal-types.context";
+
+import { selectMealTypes } from '../../../store/meal-type/meal-type.selector';
+import { updateCheatMealAction } from '../../../store/cheat-meal/cheat-meal.action';
 
 const EditCheatMealForm = ({ cheatMeal, handleCancel, handleEdit }) => {
+    const dispatch = useDispatch();
 
-    console.log("Edit CheatMealForm", cheatMeal);
     const [selectedOption, setSelectedOption] = useState('');
-    const { mealTypes } = useContext(MealTypesContext);
+    const mealTypes = useSelector(selectMealTypes)
 
     const [formState, setFormState] = useState({
         mealId: cheatMeal.mealId,
         consumedTime: cheatMeal.consumedTime,
         weight: cheatMeal.weight,
     });
-
-    const { updateCheatMeal } = useContext(CheatMealsContext);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -45,7 +46,7 @@ const EditCheatMealForm = ({ cheatMeal, handleCancel, handleEdit }) => {
 
         handleEdit(formState);
 
-        await updateCheatMeal(formState.entryId, formState);
+        dispatch(await updateCheatMealAction(formState.entryId, formState));
 
         handleCancelClick();// Pass the edited form data to the parent component
     };
