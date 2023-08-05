@@ -1,102 +1,102 @@
-import { getMealType } from "./meal-types.service";
+export const getCheatMeals = async (userId) => {
+    try {
+        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/cheatmealrecord?userid=${userId}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching cheat meal records:", error);
+        return [];
+    }
+};
 
-const CHEAT_MEALS = [
-    {
-        entryId: '11',
-        mealId: '1',
-        mealType: 'Pizza',
-        imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
-        consumedTime: new Date(2023, 7, 1),
-        weight: '100.5',
-    },
-    {
-        entryId: '12',
-        mealId: '1',
-        mealType: 'Pizza',
-        imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
-        consumedTime: new Date(2023, 7, 3),
-        weight: '101.2',
-    },
-    {
-        entryId: '13',
-        mealId: '2',
-        mealType: 'Burger',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        consumedTime: new Date(2023, 7, 3),
-        weight: '101.0',
-    },
-    {
-        entryId: '14',
-        mealId: '3',
-        mealType: 'Pasta',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        consumedTime: new Date(2023, 7, 3),
-        weight: '98.7',
-    },
-    {
-        entryId: '15',
-        mealId: '4',
-        mealType: 'Cheese Fries',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        consumedTime: new Date(2023, 7, 8),
-        weight: '103',
-    },
-]
-const getLastCheatMealId = () => CHEAT_MEALS[CHEAT_MEALS.length - 1].id;
-
-export const getCheatMeals = async () => CHEAT_MEALS;
+export const getCheatMeal = async (mealId) => {
+    try {
+        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/cheatmealrecord/${mealId}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching cheat meal record:", error);
+        return null;
+    }
+};
 
 export const addCheatMeal = async (newCheatMealInput) => {
     if (!newCheatMealInput) {
         return;
     }
 
-    const { mealId, consumedTime, weight } = newCheatMealInput;
-    const id = getLastCheatMealId() + 1;
+    try {
+        const { mealId, consumedTime, weight } = newCheatMealInput;
+        const response = await fetch("https://fitappocelotgateway.azurewebsites.net:443/gateway/cheatmealrecord", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                cheatMealId: mealId,
+                userId: 0, // Replace with the actual user ID from your application
+                dateCreated: new Date(consumedTime).toISOString(),
+                weight,
+            }),
+        });
 
-    const { imageUrl, title } = await getMealType(mealId);
+        if (!response.ok) {
+            throw new Error("Failed to add cheat meal record");
+        }
 
-    CHEAT_MEALS.push({
-        id,
-        mealId,
-        mealType: title,
-        imageUrl,
-        consumedTime: new Date(consumedTime),
-        weight,
-    });
-
-    return CHEAT_MEALS;
-}
-
-export const deleteCheatMeal = async (mealIdToDelete) => {
-    const mealTypeIndex = CHEAT_MEALS.findIndex(
-        (meal) => meal.entryId === mealIdToDelete,
-    );
-
-    if (mealTypeIndex !== -1) {
-        CHEAT_MEALS.splice(mealTypeIndex, 1);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error adding cheat meal record:", error);
+        return [];
     }
-    return CHEAT_MEALS;
-}
+};
+
 
 export const updateCheatMeal = async (mealIdToUpdate, updatedCheatMealInput) => {
-    console.log("Update meal type service called", updatedCheatMealInput);
-    const { mealId, consumedTime, weight } = updatedCheatMealInput;
+    try {
+        const { mealId, consumedTime, weight } = updatedCheatMealInput;
+        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/cheatmealrecord/${mealIdToUpdate}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                cheatMealId: mealId,
+                userId: 0, // Replace with the actual user ID from your application
+                dateCreated: new Date(consumedTime).toISOString(),
+                weight,
+            }),
+        });
 
-    const { imageUrl, title } = await getMealType(mealId);
+        if (!response.ok) {
+            throw new Error("Failed to update cheat meal record");
+        }
 
-    const mealTypeIndex = CHEAT_MEALS.findIndex(
-        (meal) => meal.entryId === mealIdToUpdate,
-    );
-
-    if (mealTypeIndex !== -1) {
-        CHEAT_MEALS[mealTypeIndex] = {
-            mealId,
-            mealType: title,
-            imageUrl,
-            consumedTime: new Date(consumedTime),
-            weight,
-        };
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error updating cheat meal record:", error);
+        return [];
     }
-    return CHEAT_MEALS;
-}
+};
+
+
+export const deleteCheatMeal = async (mealIdToDelete) => {
+    try {
+        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/cheatmealrecord/${mealIdToDelete}`, {
+            method: "DELETE",
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to delete cheat meal record");
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error deleting cheat meal record:", error);
+        return [];
+    }
+};
+
