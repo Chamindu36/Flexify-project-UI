@@ -1,116 +1,100 @@
-const WORKOUT_TYPES = [
-    {
-        id: '1',
-        title: 'Running',
-        imageUrl: 'https://i.ibb.co/h87fHq9/vegetarian-Foods-for-Christmas-Dinner-1024x693.webp',
-        description: 'Run Activity',
-        calories: 8,
-    },
-    {
-        id: '2',
-        title: 'Jogging',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        description: 'Run Activity',
-        calories: 400,
-    },
-    {
-        id: '3',
-        title: 'Bench Press',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        description: 'Weight Lifting',
-        calories: 500,
-    },
-    {
-        id: '4',
-        title: 'Squats',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        description: 'Weight Lifting',
-        calories: 600,
-    },
-    {
-        id: '5',
-        title: 'Treadmill',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        description: 'Cardio',
-        calories: 50,
-    },
-    {
-        id: '6',
-        title: 'Jump Rope',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        description: 'Cardio',
-        calories: 50,
-    },
-    {
-        id: '7',
-        title: 'Yoga',
-        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-        description: 'Relaxation',
-        calories: 50,
-    },
-];
 
-const getLastWorkoutTypeId = () => WORKOUT_TYPES[WORKOUT_TYPES.length - 1].id;
+export const getWorkoutTypes = async () => {
+    try {
+        const response = await fetch("https://fitappocelotgateway.azurewebsites.net:443/gateway/workouttype");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching workout types:", error);
+        return [];
+    }
+};
 
-export const getWorkoutTypes = async () => WORKOUT_TYPES;
-
-export const getWorkoutType = async (id) =>
-    WORKOUT_TYPES.find((workoutType) => workoutType.id === id);
+export const getWorkoutType = async (id) => {
+    try {
+        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/workouttype/${id}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching workout type:", error);
+        return null;
+    }
+};
 
 export const addWorkoutType = async (newWorkoutTypeInput) => {
     if (!newWorkoutTypeInput) {
         return;
     }
-    console.log("Add workout type service called", newWorkoutTypeInput);
 
-    const { title, imageUrl, description, calories } = newWorkoutTypeInput;
-    const id = getLastWorkoutTypeId() + 1;
-
-    const existingWorkoutType = WORKOUT_TYPES.find(
-        (workoutType) => workoutType.title.toLowerCase() === title.toLowerCase(),
-    );
-
-    if (existingWorkoutType) {
-        alert('Workout type already exists');
-        return;
-    } else {
-        WORKOUT_TYPES.push({
-            id,
-            title,
-            imageUrl,
-            description,
-            calories,
+    try {
+        const { title, imageUrl, description, calories } = newWorkoutTypeInput;
+        const response = await fetch("https://fitappocelotgateway.azurewebsites.net:443/gateway/workouttype", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                workoutName: title,
+                imageUrl,
+                description,
+                calories,
+            }),
         });
+
+        if (!response.ok) {
+            throw new Error("Failed to add workout type");
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error adding workout type:", error);
+        return [];
     }
-    return WORKOUT_TYPES;
-}
+};
 
-export const deleteWorkoutType = async (workoutTypeTitle) => {
-    const workoutTypeIndex = WORKOUT_TYPES.findIndex(
-        (workoutType) => workoutType.title.toLowerCase() === workoutTypeTitle.toLowerCase(),
-    );
+export const updateWorkoutType = async (workoutTypeId, updatedWorkoutTypeInput) => {
+    try {
+        const { title, imageUrl, description, calories } = updatedWorkoutTypeInput;
+        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/workouttype/${workoutTypeId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                workoutName: title,
+                imageUrl,
+                description,
+                calories,
+            }),
+        });
 
-    if (workoutTypeIndex !== -1) {
-        WORKOUT_TYPES.splice(workoutTypeIndex, 1);
+        if (!response.ok) {
+            throw new Error("Failed to update workout type");
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error updating workout type:", error);
+        return [];
     }
-    return WORKOUT_TYPES;
-}
+};
 
-export const updateWorkoutType = async (workoutTypeTitle, updatedWorkoutTypeInput) => {
-    console.log("Update workout type service called", updatedWorkoutTypeInput);
-    const { title, imageUrl, description, calories } = updatedWorkoutTypeInput;
+export const deleteWorkoutType = async (workoutTypeId) => {
+    try {
+        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/workouttype/${workoutTypeId}`, {
+            method: "DELETE",
+        });
 
-    const workoutTypeIndex = WORKOUT_TYPES.findIndex(
-        (workoutType) => workoutType.title.toLowerCase() === workoutTypeTitle.toLowerCase(),
-    );
+        if (!response.ok) {
+            throw new Error("Failed to delete workout type");
+        }
 
-    if (workoutTypeIndex !== -1) {
-        WORKOUT_TYPES[workoutTypeIndex] = {
-            title,
-            imageUrl,
-            description,
-            calories,
-        };
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error deleting workout type:", error);
+        return [];
     }
-    return WORKOUT_TYPES;
-}
+};
