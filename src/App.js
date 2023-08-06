@@ -20,6 +20,7 @@ import { getWorkoutTypes } from './services/workout-types.service';
 import { setWorkoutTypes } from './store/workout-type/workout-type.action';
 import { getCheatMeals } from './services/cheat-meals.service';
 import { setCheatMeals } from './store/cheat-meal/cheat-meal.action';
+import PredictionsSummary from './routes/predictions/predictions.component';
 
 const App = () => {
 
@@ -76,6 +77,7 @@ const App = () => {
         <Route path="meal-types" element={<MealTypes />} />
         <Route path="workout-types" element={<WorkoutTypes />} />
         <Route path="weekly summary" element={<WeeklySummary />} />
+        <Route path="predictions" element={<PredictionsSummary />} />
       </Route>
     </Routes>
   );
