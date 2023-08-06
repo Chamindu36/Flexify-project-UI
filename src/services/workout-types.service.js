@@ -13,8 +13,9 @@ export const getWorkoutTypes = async () => {
 export const getWorkoutType = async (id) => {
     try {
         const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/workouttype/${id}`);
-        const data = await response.json();
-        return data;
+
+        await response.json();
+        return getWorkoutTypes();
     } catch (error) {
         console.error("Error fetching workout type:", error);
         return null;
@@ -45,8 +46,8 @@ export const addWorkoutType = async (newWorkoutTypeInput) => {
             throw new Error("Failed to add workout type");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getWorkoutTypes();
     } catch (error) {
         console.error("Error adding workout type:", error);
         return [];
@@ -56,6 +57,7 @@ export const addWorkoutType = async (newWorkoutTypeInput) => {
 export const updateWorkoutType = async (workoutTypeId, updatedWorkoutTypeInput) => {
     try {
         const { title, imageUrl, description, calories } = updatedWorkoutTypeInput;
+
         const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/workouttype/${workoutTypeId}`, {
             method: "PUT",
             headers: {
@@ -73,8 +75,8 @@ export const updateWorkoutType = async (workoutTypeId, updatedWorkoutTypeInput) 
             throw new Error("Failed to update workout type");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getWorkoutTypes();
     } catch (error) {
         console.error("Error updating workout type:", error);
         return [];
@@ -91,8 +93,8 @@ export const deleteWorkoutType = async (workoutTypeId) => {
             throw new Error("Failed to delete workout type");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getWorkoutTypes();
     } catch (error) {
         console.error("Error deleting workout type:", error);
         return [];

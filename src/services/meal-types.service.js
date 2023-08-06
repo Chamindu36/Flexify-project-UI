@@ -45,8 +45,8 @@ export const addMealType = async (newCheatMealTypeInput) => {
             throw new Error("Failed to add cheat meal type");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getMealTypes();
     } catch (error) {
         console.error("Error adding cheat meal type:", error);
         return [];
@@ -73,8 +73,8 @@ export const updateMealType = async (cheatMealTypeId, updatedCheatMealTypeInput)
             throw new Error("Failed to update cheat meal type");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getMealTypes();
     } catch (error) {
         console.error("Error updating cheat meal type:", error);
         return [];
@@ -92,8 +92,8 @@ export const deleteMealType = async (cheatMealTypeId) => {
             throw new Error("Failed to delete cheat meal type");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getMealTypes();
     } catch (error) {
         console.error("Error deleting cheat meal type:", error);
         return [];
