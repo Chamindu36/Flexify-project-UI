@@ -1,3 +1,5 @@
+import { getWorkoutType } from "./workout-types.service";
+
 export const getWorkoutEntries = async () => {
     try {
         const response = await fetch("https://fitappocelotgateway.azurewebsites.net:443/gateway/workoutrecord");
@@ -12,16 +14,21 @@ export const getWorkoutEntries = async () => {
 export const updateWorkoutEntry = async (entryIdToUpdate, updatedWorkoutInput) => {
     try {
         const { workoutId, consumedTime, weight } = updatedWorkoutInput;
+
+        const { imageUrl, title } = await getWorkoutType(workoutId);
+
         const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/workoutrecord/${entryIdToUpdate}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId: 0, // Replace with the actual user ID from your application
+                userId: 77, // Replace with the actual user ID from your application
                 workoutId,
+                workoutTitle: title,
+                imageUrl,
+                consumedTime: new Date(consumedTime),
                 weight,
-                dateCreated: new Date(consumedTime).toISOString(),
             }),
         });
 
@@ -29,8 +36,8 @@ export const updateWorkoutEntry = async (entryIdToUpdate, updatedWorkoutInput) =
             throw new Error("Failed to update workout entry");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getWorkoutEntries();
     } catch (error) {
         console.error("Error updating workout entry:", error);
         return [];
@@ -44,16 +51,21 @@ export const addWorkoutEntry = async (newWorkoutInput) => {
 
     try {
         const { workoutId, consumedTime, weight } = newWorkoutInput;
+
+        const { imageUrl, title } = await getWorkoutType(workoutId);
+
         const response = await fetch("https://fitappocelotgateway.azurewebsites.net:443/gateway/workoutrecord", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId: 0, // Replace with the actual user ID from your application
+                userId: 77, // Replace with the actual user ID from your application
                 workoutId,
+                workoutTitle: title,
+                imageUrl,
+                consumedTime: new Date(consumedTime),
                 weight,
-                dateCreated: new Date(consumedTime).toISOString(),
             }),
         });
 
@@ -61,8 +73,8 @@ export const addWorkoutEntry = async (newWorkoutInput) => {
             throw new Error("Failed to add workout entry");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getWorkoutEntries();
     } catch (error) {
         console.error("Error adding workout entry:", error);
         return [];
@@ -79,8 +91,8 @@ export const deleteWorkoutEntry = async (entryIdToDelete) => {
             throw new Error("Failed to delete workout entry");
         }
 
-        const data = await response.json();
-        return data;
+        await response.json();
+        return getWorkoutEntries();
     } catch (error) {
         console.error("Error deleting workout entry:", error);
         return [];
