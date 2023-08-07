@@ -9,7 +9,7 @@ const PredictionItem = ({ summaryItem }) => {
 
     return (
         <PredictionItemContainer key={entryId}>
-            <BaseSpan> {consumedTime.toDateString()} </BaseSpan>
+            <BaseSpan> {new Date(consumedTime).toDateString()} </BaseSpan>
             <BaseSpan> {weight} </BaseSpan>
         </PredictionItemContainer>
     );

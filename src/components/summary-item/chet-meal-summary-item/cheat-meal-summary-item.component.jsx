@@ -12,7 +12,7 @@ const CheatMealSummaryItem = ({ summaryItem, type }) => {
             <BaseSpan> {entryId} </BaseSpan>
             <BaseSpan> {type} </BaseSpan>
             <BaseSpan> {mealType} </BaseSpan>
-            <BaseSpan> {consumedTime.toDateString()} </BaseSpan>
+            <BaseSpan> {new Date(consumedTime).toDateString()} </BaseSpan>
             <BaseSpan> {weight} </BaseSpan>
         </CheatMealSummaryItemContainer>
     );
