@@ -35,7 +35,7 @@ export const addWorkoutType = async (newWorkoutTypeInput) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                workoutName: title,
+                title,
                 imageUrl,
                 description,
                 calories,
@@ -64,7 +64,7 @@ export const updateWorkoutType = async (workoutTypeId, updatedWorkoutTypeInput) 
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                workoutName: title,
+                title,
                 imageUrl,
                 description,
                 calories,
