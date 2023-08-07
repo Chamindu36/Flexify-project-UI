@@ -22,6 +22,7 @@ const EditCheatMealForm = ({ cheatMeal, handleCancel, handleEdit }) => {
     const mealTypes = useSelector(selectMealTypes)
 
     const [formState, setFormState] = useState({
+        entryId: cheatMeal.entryId,
         mealId: cheatMeal.mealId,
         consumedTime: cheatMeal.consumedTime,
         weight: cheatMeal.weight,
