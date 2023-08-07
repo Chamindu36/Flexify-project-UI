@@ -1,8 +1,8 @@
 import { getMealType } from "./meal-types.service";
 
-export const getCheatMeals = async (userId) => {
+export const getCheatMeals = async () => {
     try {
-        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/cheatmealrecord?userid=${userId}`);
+        const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/cheatmealrecord?userid=77`);
         const data = await response.json();
         return data;
     } catch (error) {

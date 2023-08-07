@@ -32,7 +32,7 @@ const MealTypeItem = ({ mealType }) => {
         setShowConfirmationPopup(false);
 
         // pass the meal type title to the deleteMealType functions
-        dispatch(await deleteMealTypeAction(mealType.title));
+        dispatch(await deleteMealTypeAction(mealType.id));
     };
 
     const updateMealItem = async () => {
