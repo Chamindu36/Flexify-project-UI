@@ -14,8 +14,7 @@ export const getWorkoutType = async (id) => {
     try {
         const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/workouttype/${id}`);
 
-        await response.json();
-        return getWorkoutTypes();
+        return await response.json();
     } catch (error) {
         console.error("Error fetching workout type:", error);
         return null;

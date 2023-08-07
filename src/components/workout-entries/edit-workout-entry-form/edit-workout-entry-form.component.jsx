@@ -19,7 +19,8 @@ const EditWorkoutEntryForm = ({ workout, handleCancel, handleEdit }) => {
     const workoutTypes = useSelector(selectWorkoutTypes);
 
     const [formState, setFormState] = useState({
-        workoutId: workout.mealId,
+        entryId: workout.entryId,
+        workoutId: workout.workoutId,
         consumedTime: workout.consumedTime,
         weight: workout.weight,
     });
@@ -57,12 +58,12 @@ const EditWorkoutEntryForm = ({ workout, handleCancel, handleEdit }) => {
     }));
 
     return (
-        <EditWorkoutEntryFormContainer
+        <EditWorkoutEntryFormModalContainer
             isOpen={true} // Set to true to always show the modal
             onRequestClose={handleCancelClick}
             ariaHideApp={false} // Prevent app from being hidden when modal is open
         >
-            <EditWorkoutEntryFormModalContainer>
+            <EditWorkoutEntryFormContainer>
                 <h2>Edit Workout Entry</h2>
                 <form onSubmit={handleSubmit}>
                     <Dropdown
@@ -102,8 +103,8 @@ const EditWorkoutEntryForm = ({ workout, handleCancel, handleEdit }) => {
                         </Button>
                     </ButtonsContainer>
                 </form>
-            </EditWorkoutEntryFormModalContainer>
-        </EditWorkoutEntryFormContainer>
+            </EditWorkoutEntryFormContainer>
+        </EditWorkoutEntryFormModalContainer>
     );
 };
 

@@ -17,6 +17,8 @@ export const updateWorkoutEntry = async (entryIdToUpdate, updatedWorkoutInput) =
 
         const { imageUrl, title } = await getWorkoutType(workoutId);
 
+        console.log("TTTSTTT", title);
+
         const response = await fetch(`https://fitappocelotgateway.azurewebsites.net:443/gateway/workoutrecord/${entryIdToUpdate}`, {
             method: "PUT",
             headers: {
@@ -53,6 +55,8 @@ export const addWorkoutEntry = async (newWorkoutInput) => {
         const { workoutId, consumedTime, weight } = newWorkoutInput;
 
         const { imageUrl, title } = await getWorkoutType(workoutId);
+
+        console.log("TTTSTTT", title);
 
         const response = await fetch("https://fitappocelotgateway.azurewebsites.net:443/gateway/workoutrecord", {
             method: "POST",
