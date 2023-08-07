@@ -32,7 +32,7 @@ const WorkOutTypeItem = ({ workoutType }) => {
         setShowConfirmationPopup(false);
 
         // pass the workout type title to the deleteWorkoutType functions
-        dispatch(await deleteWorkoutTypeAction(workoutType.title));
+        dispatch(await deleteWorkoutTypeAction(workoutType.id));
     };
 
     const updateWorkoutItem = async () => {

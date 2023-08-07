@@ -15,6 +15,7 @@ const EditWorkoutTypeForm = ({ workoutType, handleCancel, handleEdit }) => {
     const dispatch = useDispatch();
 
     const [formState, setFormState] = useState({
+        id: workoutType.id,
         title: workoutType.title,
         imageUrl: workoutType.imageUrl,
         description: workoutType.description,
@@ -36,7 +37,7 @@ const EditWorkoutTypeForm = ({ workoutType, handleCancel, handleEdit }) => {
 
         handleEdit(formState);
 
-        dispatch(await updateWorkoutTypeAction(formState.title, formState));
+        dispatch(await updateWorkoutTypeAction(formState.id, formState));
 
         handleCancelClick();// Pass the edited form data to the parent component
     };

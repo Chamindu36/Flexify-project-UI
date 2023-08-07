@@ -2,7 +2,7 @@ import { getWorkoutType } from "./workout-types.service";
 
 export const getWorkoutEntries = async () => {
     try {
-        const response = await fetch("https://fitappocelotgateway.azurewebsites.net:443/gateway/workoutrecord");
+        const response = await fetch("https://fitappocelotgateway.azurewebsites.net:443/gateway/workoutrecord?userId=77");
         const data = await response.json();
         return data;
     } catch (error) {

@@ -24,6 +24,8 @@ const WeeklySummary = () => {
         return new Date(b.consumedTime) - new Date(a.consumedTime);
     });
 
+    console.log('summary entries', entries);
+
     return (
         <WeeklySummaryContainer>
             <TitleBlock> Weekly Summary </TitleBlock>

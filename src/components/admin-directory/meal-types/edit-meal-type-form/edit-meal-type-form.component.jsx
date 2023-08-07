@@ -15,6 +15,7 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
     const dispatch = useDispatch();
 
     const [formState, setFormState] = useState({
+        id: mealType.id,
         title: mealType.title,
         imageUrl: mealType.imageUrl,
         description: mealType.description,
@@ -36,7 +37,7 @@ const EditMealTypeForm = ({ mealType, handleCancel, handleEdit }) => {
 
         handleEdit(formState);
 
-        dispatch(await updateMealTypeAction(formState.title, formState));
+        dispatch(await updateMealTypeAction(formState.id, formState));
 
         handleCancelClick();// Pass the edited form data to the parent component
     };
