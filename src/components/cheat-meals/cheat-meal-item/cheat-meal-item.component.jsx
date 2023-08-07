@@ -52,7 +52,7 @@ const CheatMealItem = ({ cheatMeal }) => {
                 <img src={imageUrl} alt={`${mealType}`} />
             </CheatMealImageContainer>
             <BaseSpan> {mealType} </BaseSpan>
-            <BaseSpan> {consumedTime.toDateString()} </BaseSpan>
+            <BaseSpan> {new Date(consumedTime).toDateString()} </BaseSpan>
             <BaseSpan> {weight} </BaseSpan>
             <ButtonContainer>
                 <EditButton onClick={updateMealItem}>

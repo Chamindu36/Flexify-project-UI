@@ -49,7 +49,7 @@ const WorkoutEntry = ({ workout }) => {
                 <img src={imageUrl} alt={`${workoutTitle}`} />
             </WorkoutEntryImageContainer>
             <BaseSpan> {workoutTitle} </BaseSpan>
-            <BaseSpan> {consumedTime.toDateString()} </BaseSpan>
+            <BaseSpan> {new Date(consumedTime).toDateString()} </BaseSpan>
             <BaseSpan> {weight} </BaseSpan>
             <ButtonContainer>
                 <EditButton onClick={updateWorkoutItem}>
